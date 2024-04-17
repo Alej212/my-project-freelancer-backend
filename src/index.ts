@@ -1,0 +1,27 @@
+import express from 'express'
+import dotenv from 'dotenv'
+dotenv.config()
+import routes from './routes/index'
+
+//* Variables
+
+const app = express();
+const PORT = process.env.PORT || 3050;
+
+//* Uses
+
+app.use(express.json())
+app.use(routes)
+
+//* Route init
+
+app.get('/', (req, res) => {
+    res.send('hello friend')
+})
+
+//* Port listen
+
+app.listen(PORT, () => {
+    console.log(`server listen in http://localhost:${PORT}`)
+})
+
