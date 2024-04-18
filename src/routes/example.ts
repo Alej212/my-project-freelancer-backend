@@ -1,4 +1,4 @@
-import { Router } from "express";
+import { Router } from 'express'
 
 //* Import Controllers
 import exampleController from '../controllers/example'
@@ -10,4 +10,4 @@ const router = Router()
 
 router.get('/example', exampleMiddleware, exampleController)
 
-export default router;
+export default router

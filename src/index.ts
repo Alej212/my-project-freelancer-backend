@@ -1,12 +1,12 @@
 import express from 'express'
 import dotenv from 'dotenv'
-dotenv.config()
 import routes from './routes/index'
+dotenv.config()
 
 //* Variables
 
-const app = express();
-const PORT = process.env.PORT || 3050;
+const app = express()
+const PORT = process.env.PORT !== undefined ? process.env.PORT : 3050
 
 //* Uses
 
@@ -16,12 +16,11 @@ app.use(routes)
 //* Route init
 
 app.get('/', (req, res) => {
-    res.send('hello friend')
+  res.send('hello friend')
 })
 
 //* Port listen
 
 app.listen(PORT, () => {
-    console.log(`server listen in http://localhost:${PORT}`)
+  console.log(`server listen in http://localhost:${PORT}`)
 })
-
