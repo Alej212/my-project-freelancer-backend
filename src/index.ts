@@ -6,7 +6,7 @@ dotenv.config()
 //* Variables
 
 const app = express()
-const PORT = process.env.PORT !== undefined ? process.env.PORT : 3050
+const PORT = process.env.PORT !== undefined ? process.env.PORT : 3000
 
 //* Uses
 
