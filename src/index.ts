@@ -1,6 +1,7 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import routes from './routes/index'
+import DB from './configs/PostgresConnection'
 dotenv.config()
 
 //* Variables
@@ -24,3 +25,7 @@ app.get('/', (req, res) => {
 app.listen(PORT, () => {
   console.log(`server listen in http://localhost:${PORT}`)
 })
+
+//* DB listen
+
+DB

@@ -27,6 +27,8 @@
     "typescript": "5.4.5"
   },
   "dependencies": {
+    "@sequelize/core": "7.0.0-alpha.40",
+    "@sequelize/postgres": "7.0.0-alpha.40",
     "bcryptjs": "2.4.3",
     "cors": "2.8.5",
     "express": "4.19.2",
