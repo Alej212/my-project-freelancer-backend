@@ -1,5 +1,5 @@
-import { Sequelize } from '@sequelize/core';
-import { PostgresDialect } from '@sequelize/postgres';
+import { Sequelize } from '@sequelize/core'
+import { PostgresDialect } from '@sequelize/postgres'
 
 const sequelize = new Sequelize({
   dialect: PostgresDialect,
@@ -7,17 +7,17 @@ const sequelize = new Sequelize({
   password: 'password',
   host: 'localhost',
   port: 5432,
-  ssl: false,
-  //clientMinMessages: 'notice',
-});
+  ssl: false
+  // clientMinMessages: 'notice',
+})
 
-async function testConnection() {
-    try {
-      await sequelize.authenticate();
-      console.log('Connection has been established successfully.');
-    } catch (error) {
-      console.error('Unable to connect to the database:', error);
-    }
+async function testConnection (): Promise<void> {
+  try {
+    await sequelize.authenticate()
+    console.log('Connection has been established successfully.')
+  } catch (error) {
+    console.error('Unable to connect to the database:', error)
   }
+}
 
-export default testConnection();
+export default testConnection()

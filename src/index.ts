@@ -1,7 +1,8 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import routes from './routes/index'
-import DB from './configs/PostgresConnection'
+import './configs/PostgresConnection'
+import './configs/RedisConnection'
 dotenv.config()
 
 //* Variables
@@ -28,4 +29,5 @@ app.listen(PORT, () => {
 
 //* DB listen
 
-DB
+// postgresConnection
+// redisConnection
