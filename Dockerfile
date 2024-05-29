@@ -1,5 +1,5 @@
 # Especifica la imagen base
-FROM node:lts-alpine3.19
+FROM node:20-alpine
 
 # Crea un directorio de trabajo
 WORKDIR /usr/src/app
@@ -21,4 +21,4 @@ EXPOSE 3000
 RUN pnpm build
 
 # Comando para iniciar la aplicación
-CMD [ "node", "dist/index" ]
+CMD ["node", "dist/index" ]
