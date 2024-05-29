@@ -6,13 +6,24 @@ services:
       - "3000:3000"
     depends_on:
       - db
+      - redis
     environment:
-      - DATABASE_URL=postgres://postgres:password@db:5432/postgres
+      - DATABASE_URL=postgres://superuser:password@db:5432/postgres
+    restart: always
   db:
     image: postgres:16.2-alpine3.19
     ports:
-      - "5432:5432"
+      - "5433:5432"
     environment:
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=superuser
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=postgres
+  redis:
+    image: redis:alpine3.19
+    ports:
+      - "6380:6379"
+    command: redis-server --requirepass password --dir /data
+    volumes:
+      - redis-data:/data
+volumes:
+  redis-data:
