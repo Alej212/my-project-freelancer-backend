@@ -1,8 +1,8 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import routes from './routes/index'
-import './configs/PostgresConnection'
-import './configs/RedisConnection'
+import sequelize from './configs/PostgresConnection'
+import redis from './configs/RedisConnection'
 dotenv.config()
 
 //* Variables
@@ -29,5 +29,36 @@ app.listen(PORT, () => {
 
 //* DB listen
 
-// postgresConnection
-// redisConnection
+//* postgres
+
+sequelize
+  .sync()
+  .then(result => {
+    console.log('Database connected')
+  })
+  .catch(err => console.log(err))
+
+//* redis
+
+// Escucha el evento 'ready'
+redis.on('ready', () => {
+  console.log('Conexión a Redis establecida correctamente')
+})
+
+// Escucha el evento 'error' para manejar posibles errores
+redis.on('error', (err) => {
+  console.error('Error en la conexión a Redis:', err)
+})
+
+async function redisIsConnected (): Promise<void> {
+  try {
+    await redis.set('test', 'value')
+    const value = await redis.get('test')
+    console.log('Got value from Redis:', value)
+  } catch (err) {
+    console.error('Error with Redis operation:', err)
+  }
+}
+redisIsConnected().catch((err: any) => {
+  console.error('this error', err)
+})
