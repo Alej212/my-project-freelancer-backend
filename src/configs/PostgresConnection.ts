@@ -1,23 +1,16 @@
 import { Sequelize } from '@sequelize/core'
-import { PostgresDialect } from '@sequelize/postgres'
+import { config } from 'dotenv'
+config()
 
 const sequelize = new Sequelize({
-  dialect: PostgresDialect,
-  user: 'postgres',
+  dialect: 'postgres',
+  username: 'superuser',
   password: 'password',
-  host: 'localhost',
+  database: 'postgres',
+  host: 'db',
   port: 5432,
   ssl: false
-  // clientMinMessages: 'notice',
+  // clientMinMessages: 'notice'
 })
 
-async function testConnection (): Promise<void> {
-  try {
-    await sequelize.authenticate()
-    console.log('Connection has been established successfully.')
-  } catch (error) {
-    console.error('Unable to connect to the database:', error)
-  }
-}
-
-export default testConnection()
+export default sequelize
